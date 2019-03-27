@@ -6,5 +6,5 @@ import pump from './pump'
 export default async (inStream: Readable) => {
   const outStream = new StreamWithBuffer()
   await pump(inStream, outStream)
-  return outStream.buf
+  return outStream.buffer
 }

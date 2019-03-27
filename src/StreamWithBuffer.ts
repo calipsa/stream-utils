@@ -1,8 +1,8 @@
 import { Writable } from 'stream'
 
 class StreamWithBuffer extends Writable {
-  chunks: Buffer[] = []
-  buf: Buffer
+  private chunks: Buffer[] = []
+  buffer: Buffer
 
   constructor() {
     super()
@@ -19,7 +19,7 @@ class StreamWithBuffer extends Writable {
   }
 
   end() {
-    this.buf = Buffer.concat(this.chunks)
+    this.buffer = Buffer.concat(this.chunks)
     super.end()
   }
 }

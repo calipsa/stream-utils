@@ -40,7 +40,7 @@ class StreamWithFrames extends Writable {
     cb()
   }
 
-  pushFrame(start, end) {
+  private pushFrame(start, end) {
     const chunk = this.currentBuffer.slice(start, end)
     if (this.counter >= 1) {
       --this.counter

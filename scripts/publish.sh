@@ -15,4 +15,4 @@ git commit -m "$VERSION"
 git tag $VERSION -f
 git push
 
-npm publish
+npm publish --access=public
