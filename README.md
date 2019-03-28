@@ -2,8 +2,6 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
 
-A wrapper for lazy import of React components
-
 ## Installation
 ```
 npm install --save @calipsa/stream-utils
