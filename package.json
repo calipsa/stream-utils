@@ -1,6 +1,6 @@
 {
   "name": "@calipsa/stream-utils",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Stream utilities",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -20,13 +20,13 @@
   "author": "Anton Veselev",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^11.12.2",
     "@types/pump": "^1.0.1",
     "@types/stream-buffers": "^3.0.2",
     "pump": "^3.0.0",
     "stream-buffers": "^3.0.2"
   },
   "devDependencies": {
-    "@types/node": "^11.12.1",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.4.1"
   }
 }

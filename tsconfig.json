@@ -7,7 +7,7 @@
     "pretty": true,
     "declaration": true,
     "alwaysStrict": true,
-    "allowSyntheticDefaultImports": true,
+    // "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
     // "noImplicitAny": true,
