@@ -1,7 +1,16 @@
-import { Readable, PassThrough } from 'stream'
+import {
+  Readable,
+  PassThrough,
+} from 'stream'
 
-export default (readable: Readable) => {
-  const s1 = readable.pipe(new PassThrough())
-  const s2 = readable.pipe(new PassThrough())
-  return [s1, s2]
+/**
+ * @param numStreams number of output streams, defaults to 2
+ */
+export default (readable: Readable, numStreams = 2) => {
+  const arr: PassThrough[] = []
+  for (let i = 0; i < numStreams; ++i) {
+    const newStream = readable.pipe(new PassThrough())
+    arr.push(newStream)
+  }
+  return arr
 }
