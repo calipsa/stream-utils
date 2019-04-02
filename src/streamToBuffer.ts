@@ -8,5 +8,3 @@ export default async (inStream: Readable) => {
   await pump(inStream, outStream)
   return outStream.buffer
 }
-
-// string -> buffer -> buffertostream -> splitstream -> streamtobuffer (identicals)
