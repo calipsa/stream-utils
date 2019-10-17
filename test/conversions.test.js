@@ -2,7 +2,7 @@ const {
   bufferToStream,
   splitStream,
   streamToBuffer,
-} = require('../build')
+} = require('../dist')
 
 const ENCODING = 'utf8'
 const NUM_SPLIT_STREAMS = 10

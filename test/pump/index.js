@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const { pump } = require('../../build')
+const { pump } = require('../../dist')
 
 console.log(pump)
 
