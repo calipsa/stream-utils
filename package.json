@@ -1,6 +1,6 @@
 {
   "name": "@calipsa/stream-utils",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Stream utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
