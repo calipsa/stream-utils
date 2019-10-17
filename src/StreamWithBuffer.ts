@@ -12,7 +12,7 @@ class StreamWithBuffer extends Writable {
     this.chunks = []
   }
 
-  _write(chunk, encoding, next) {
+  _write(chunk: Buffer, encoding: string, next: () => void) {
     // console.log('chunk')
     this.chunks.push(chunk)
     next()

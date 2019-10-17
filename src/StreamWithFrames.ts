@@ -16,7 +16,7 @@ class StreamWithFrames extends Writable {
     this.rate = rate
   }
 
-  _write(data, enc, cb) {
+  _write(data: Buffer, enc: string, cb: () => void) {
     // Add new data to buffer
     this.currentBuffer = Buffer.concat([this.currentBuffer, data])
     while (true) {
@@ -40,7 +40,7 @@ class StreamWithFrames extends Writable {
     cb()
   }
 
-  private pushFrame(start, end) {
+  private pushFrame(start: number, end: number) {
     const chunk = this.currentBuffer.slice(start, end)
     if (this.counter >= 1) {
       --this.counter
