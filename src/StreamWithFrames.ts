@@ -19,6 +19,7 @@ class StreamWithFrames extends Writable {
   _write(data: Buffer, enc: string, cb: () => void) {
     // Add new data to buffer
     this.currentBuffer = Buffer.concat([this.currentBuffer, data])
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       const start = this.currentBuffer.indexOf(JPG_DELIMITER)
       if (start < 0) {
