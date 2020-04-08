@@ -1,6 +1,7 @@
 import { Stream } from 'stream'
 import { promisify } from 'util'
-import * as pump from 'pump'
+
+import pump from 'pump'
 
 /**
  * Promisifed pump
