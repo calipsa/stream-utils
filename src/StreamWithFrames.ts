@@ -3,10 +3,10 @@ import { Writable } from 'stream'
 const JPG_DELIMITER = Buffer.from('FFD8FF', 'hex')
 
 class StreamWithFrames extends Writable {
-  buffers: Buffer[] = []
+  readonly #rate: number
+  readonly buffers: Buffer[] = []
   #currentBuffer = Buffer.alloc(0)
   #counter = 1
-  #rate: number
 
   constructor(rate = 1) {
     super({

@@ -1,7 +1,7 @@
 import { Writable } from 'stream'
 
 class StreamWithBuffer extends Writable {
-  #chunks: Buffer[] = []
+  readonly #chunks: Buffer[] = []
   buffer: Buffer
 
   _write(chunk: Buffer, encoding: string, next: () => void) {
