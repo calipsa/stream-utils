@@ -2,7 +2,11 @@ import { Writable } from 'stream'
 
 class StreamWithBuffer extends Writable {
   readonly #chunks: Buffer[] = []
-  buffer: Buffer
+  #buffer: Buffer
+
+  get buffer() {
+    return this.#buffer
+  }
 
   _write(chunk: Buffer, encoding: string, next: () => void) {
     // console.log('chunk')
@@ -11,7 +15,7 @@ class StreamWithBuffer extends Writable {
   }
 
   end() {
-    this.buffer = Buffer.concat(this.#chunks)
+    this.#buffer = Buffer.concat(this.#chunks)
     super.end()
   }
 }
