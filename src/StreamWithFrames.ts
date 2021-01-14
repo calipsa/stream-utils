@@ -17,7 +17,7 @@ function getEnd(currentBuffer: Buffer, start: number) {
 
 class StreamWithFrames extends Writable {
   readonly #rate: number
-  readonly buffers: Buffer[] = []
+  readonly #buffers: Buffer[] = []
   #currentBuffer = Buffer.alloc(0)
   #counter = 1
 
@@ -27,6 +27,10 @@ class StreamWithFrames extends Writable {
       readableObjectMode: true,
     })
     this.#rate = rate
+  }
+
+  get buffers() {
+    return this.#buffers
   }
 
   _write(data: Buffer, enc: string, cb: () => void) {
@@ -59,7 +63,7 @@ class StreamWithFrames extends Writable {
     if (this.#counter >= 1) {
       --this.#counter
       // emit a frame
-      this.buffers.push(chunk)
+      this.#buffers.push(chunk)
     }
     this.#counter += this.#rate
   }
