@@ -22,16 +22,16 @@ describe('Conversions', () => {
     jest.setTimeout(120000)
   })
 
-  for (const [type, buffer] of Object.entries(buffers)) {
-    console.log('text:', type)
+  for (const [name, buffer] of Object.entries(buffers)) {
+    console.log('text:', name)
 
-    it(`Should convert correctly (${type})`, async () => {
+    it(`Should convert correctly (${name})`, async () => {
       const stream = bufferToStream(buffer)
       const convertedBuffer = await streamToBuffer(stream)
       expect(convertedBuffer).toEqual(buffer)
     })
   
-    it(`Should convert & split correctly (${type})`, async () => {
+    it(`Should convert & split correctly (${name})`, async () => {
       const stream = bufferToStream(buffer)
       const streams = splitStream(stream, NUM_SPLIT_STREAMS)
       const promises = streams.map(streamToBuffer)
