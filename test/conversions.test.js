@@ -7,11 +7,11 @@ const {
 const ENCODING = 'utf8'
 const NUM_SPLIT_STREAMS = 10
 
-const texts = {
-  random: 'Random text to be used for the test',
-  empty: '',
-  unicode: 'üñíçöďé ťęxţ',
-  long: 'abc'.repeat(100000),
+const buffers = {
+  random: Buffer.from('Random text to be used for the test', ENCODING),
+  empty: Buffer.from('', ENCODING),
+  unicode: Buffer.from('üñíçöďé ťęxţ', ENCODING),
+  long: Buffer.from('abc'.repeat(100000), ENCODING),
 }
 
 const allItemsAreEqual = (arr) =>
@@ -22,31 +22,27 @@ describe('Conversions', () => {
     jest.setTimeout(120000)
   })
 
-  for (const [type, text] of Object.entries(texts)) {
+  for (const [type, buffer] of Object.entries(buffers)) {
     console.log('text:', type)
 
     it(`Should convert correctly (${type})`, async () => {
-      const buffer = Buffer.from(text, ENCODING)
       const stream = bufferToStream(buffer)
       const convertedBuffer = await streamToBuffer(stream)
-      const outputText = convertedBuffer.toString(ENCODING)
-      expect(outputText).toBe(text)
+      expect(convertedBuffer).toEqual(buffer)
     })
   
     it(`Should convert & split correctly (${type})`, async () => {
-      const buffer = Buffer.from(text, ENCODING)
       const stream = bufferToStream(buffer)
       const streams = splitStream(stream, NUM_SPLIT_STREAMS)
       const promises = streams.map(streamToBuffer)
       const convertedBuffers = await Promise.all(promises)
-      const outputTexts = convertedBuffers.map(item => item.toString(ENCODING))
       
-      expect(outputTexts.length).toBe(NUM_SPLIT_STREAMS)
-      const firstOutputText = outputTexts[0]
+      expect(convertedBuffers.length).toEqual(NUM_SPLIT_STREAMS)
+      const firstConvertedBuffer = convertedBuffers[0]
       for (let i = 0; i < NUM_SPLIT_STREAMS; ++i) {
-        expect(outputTexts[i]).toBe(firstOutputText)
+        expect(convertedBuffers[i]).toEqual(firstConvertedBuffer)
       }
-      expect(firstOutputText).toBe(text)
+      expect(firstConvertedBuffer).toEqual(buffer)
     })
   }
 })
